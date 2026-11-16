@@ -1,0 +1,187 @@
+openapi: 3.0.4
+info:
+  title: India Pincode Lookup
+  description: >-
+    India Pincode Lookup is an Indian PIN code API covering all ~19,300 PIN
+    codes and ~157,000 post offices. Look up a PIN code to get its district,
+    state, ISO state code, India Post circle, region, division and post office
+    count, or search by post office, district or state, while paid plans add
+    coordinates, every post office with its type and delivery status, and nearby
+    PIN codes by distance.
+  termsOfService: https://apiverve.com/terms/
+  contact:
+    name: APIVerve Support
+    email: hello@apiverve.com
+    url: https://apiverve.com/contact
+  version: 1.0.0
+externalDocs:
+  description: Learn more about APIVerve
+  url: https://docs.apiverve.com?utm_source=openapi
+servers:
+  - url: https://api.apiverve.com/
+paths:
+  /v1/indiapincode:
+    get:
+      summary: India Pincode Lookup
+      description: Look up a PIN code, or find PIN codes by post office, district or state
+      operationId: indiapincode
+      parameters:
+        - name: pincode
+          in: query
+          schema:
+            type: string
+          required: false
+          description: Six-digit PIN code
+          example: '110001'
+        - name: office
+          in: query
+          schema:
+            type: string
+          required: false
+          description: Post office name or part of it
+          example: Connaught Place
+        - name: district
+          in: query
+          schema:
+            type: string
+          required: false
+          description: District name
+          example: Pune
+        - name: state
+          in: query
+          schema:
+            type: string
+          required: false
+          description: State or union territory name
+          example: Maharashtra
+        - name: nearby
+          in: query
+          schema:
+            type: boolean
+          required: false
+          description: With pincode, include the PIN codes within radius km
+          example: true
+        - name: radius
+          in: query
+          schema:
+            type: number
+          required: false
+          description: Radius in km for nearby (1-50)
+          example: 10
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          required: false
+          description: Maximum PIN codes to return for searches (1-50)
+          example: 10
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: status
+                  error:
+                    type: string
+                    description: error
+                  data:
+                    type: object
+                    description: data
+              example:
+                status: ok
+                error: null
+                data:
+                  count: 1
+                  totalMatches: 1
+                  results:
+                    - pincode: '560001'
+                      district: Bengaluru Urban
+                      state: Karnataka
+                      stateCode: KA
+                      circle: Karnataka Circle
+                      region: Bengaluru HQ Region
+                      division: BANGALORE GPO DIVISION
+                      latitude: 12.98247
+                      longitude: 77.59456
+                      timezone: Asia/Kolkata
+                      postOfficeCount: 10
+                      deliveryOfficeCount: 1
+                      postOffices:
+                        - name: Bengaluru G.P.O.
+                          officeType: head_office
+                          delivery: true
+                          latitude: 12.9716
+                          longitude: 77.59456
+                        - name: Bengaluru Foreign Post S.O
+                          officeType: sub_office
+                          delivery: false
+                          latitude: 13.03
+                          longitude: 77.6007
+                        - name: CMM Court Complex S.O
+                          officeType: sub_office
+                          delivery: false
+                          latitude: 12.97949
+                          longitude: 77.59418
+                        - name: Dr. Ambedkar Veedhi S.O
+                          officeType: sub_office
+                          delivery: false
+                          latitude: 12.98114
+                          longitude: 77.59536
+                        - name: HighCourt S.O
+                          officeType: sub_office
+                          delivery: false
+                          latitude: 12.96842
+                          longitude: 77.56919
+                        - name: Legislators Home S.O
+                          officeType: sub_office
+                          delivery: false
+                          latitude: 12.98386
+                          longitude: 77.58961
+                        - name: Mahatma Gandhi Road S.O
+                          officeType: sub_office
+                          delivery: false
+                          latitude: 12.16103
+                          longitude: 78.00022
+                        - name: Rajbhavan S.O
+                          officeType: sub_office
+                          delivery: false
+                          latitude: 12.98247
+                          longitude: 77.5913
+                        - name: Vasanthanagar S.O
+                          officeType: sub_office
+                          delivery: false
+                          latitude: 12.99351
+                          longitude: 77.5921
+                        - name: Vidhana Soudha S.O
+                          officeType: sub_office
+                          delivery: false
+                          latitude: 12.98747
+                          longitude: 77.60475
+                      nearby:
+                        - pincode: '560009'
+                          district: Bengaluru Urban
+                          state: Karnataka
+                          distanceKm: 1.57
+                        - pincode: '560042'
+                          district: Bengaluru Urban
+                          state: Karnataka
+                          distanceKm: 1.93
+        '401':
+          description: Your request was not authorized, or your API Key was invalid
+        '404':
+          description: Requested resource was not found
+        '500':
+          description: A server error has occurred, try again later
+components:
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: x-api-key
+      in: header
+security:
+  - api_key: []
