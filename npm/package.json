@@ -1,0 +1,47 @@
+{
+  "name": "@apiverve/indiapincode",
+  "version": "1.2.6",
+  "description": "India Pincode Lookup is an Indian PIN code API covering all ~19,300 PIN codes and ~157,000 post offices. Look up a PIN code to get its district, state, ISO state code, India Post circle, region, division and post office count, or search by post office, district or state, while paid plans add coordinates, every post office with its type and delivery status, and nearby PIN codes by distance.",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "mocha",
+    "example": "node examples/basic.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apiverve/indiapincode-api.git",
+    "directory": "npm"
+  },
+  "keywords": [
+    "india pincode api", "pincode lookup api", "pin code api india", "indian postal code api", "pincode to district api"
+  ],
+  "author": {
+    "name": "APIVerve",
+    "email": "hello@apiverve.com",
+    "url": "https://apiverve.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/apiverve/indiapincode-api/issues"
+  },
+  "homepage": "https://apiverve.com/marketplace/indiapincode?utm_source=npm&utm_medium=referral&utm_content=homepage",
+  "devDependencies": {
+    "mocha": "^11.0.1",
+    "chai": "^5.1.2",
+    "dotenv": "^16.4.7"
+  },
+  "dependencies": {
+    "axios": "1.13.2",
+    "form-data": "^4.0.1"
+  }
+}
